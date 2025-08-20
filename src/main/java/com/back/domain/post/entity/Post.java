@@ -1,5 +1,6 @@
-package com.back.domain.wiseSaying.entity;
+package com.back.domain.post.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -9,12 +10,14 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
-public class WiseSaying {
+@ToString
+public class Post {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
-    private String saying;
-    private String author;
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
 }
