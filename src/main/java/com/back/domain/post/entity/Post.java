@@ -10,19 +10,19 @@ import lombok.*;
 @Setter
 @Entity
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
-    private final String title; // final -> 변수의 상수화 -> 명시적으로 값 넣어야 ⭕️
+    private String title; // final -> 변수의 상수화 -> 명시적으로 값 넣어야 ⭕️
 
     @Column(columnDefinition = "TEXT")
-    private final String content;
+    private String content;
 
     // 매개변수 ❌-> 기본 생성자
-    public Post() {
-        this.title = "";
-        this.content = "";
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
