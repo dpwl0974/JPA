@@ -17,6 +17,7 @@ public class BaseInitData {
         return args -> {
 
             postRepository.count();
+            postRepository.findById(1);
 
 //            Post post1 = new Post();
 //            post1.setTitle("첫 게시글 제목");
