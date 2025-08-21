@@ -4,7 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,9 +25,15 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
+
     // 매개변수 ❌-> 기본 생성자
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
+
+        this.createDate = LocalDateTime.now();
+        this.modifyDate = LocalDateTime.now();
     }
 }
