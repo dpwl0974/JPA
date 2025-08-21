@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -31,9 +32,14 @@ public class BaseInitData {
             self.work1();
             self.work2();
 
+            new Thread(() -> {
+                self.work3();
+            }).start();
+
         };
     }
 
+    @Transactional
     void work1() {
 
         if(postService.getTotalCount() > 0) {
@@ -45,7 +51,19 @@ public class BaseInitData {
         postService.write("제목2", "내용2");
     }
 
+    @Transactional
     void work2() {
         Optional<Post> opPost = postService.getPost(1);
+    }
+
+    void work3() {
+        Post post1 = postService.getPost(1).get();
+        Post post2 = postService.getPost(2).get();
+
+        postService.delete(post1);
+
+        if(true) throw new RuntimeException("테스트용 예외 발생");
+
+        postService.delete(post2);
     }
 }
