@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.Optional;
 
@@ -18,14 +19,17 @@ public class BaseInitData {
     @Autowired //객체 넣
     private PostRepository postRepository;
 
+    @Autowired
+    @Lazy
+    private BaseInitData self;
     private final PostService postService;
 
     @Bean
     ApplicationRunner initDataRunner(){
         return args -> {
 
-            work1();
-            work2();
+            self.work1();
+            self.work2();
 
         };
     }
