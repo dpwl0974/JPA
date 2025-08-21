@@ -16,8 +16,11 @@ public class BaseInitData {
     @Autowired //객체 넣
     private PostRepository postRepository;
 
-    @Autowired
     private PostService postService;
+
+    public BaseInitData(PostService postService) {
+        this.postService = postService;
+    }
 
     @Bean
     ApplicationRunner initDataRunner(){
