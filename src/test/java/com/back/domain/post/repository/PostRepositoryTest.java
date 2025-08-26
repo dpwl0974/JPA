@@ -5,10 +5,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Transactional
+@Rollback //작업 끝나면 원복
 public class PostRepositoryTest {
 
     @Autowired
@@ -37,6 +41,7 @@ public class PostRepositoryTest {
         assertThat(savedPost.getId()).isNotNull();
         assertThat(savedPost.getTitle()).isEqualTo("new 제목");
         assertThat(savedPost.getContent()).isEqualTo("new 내용");
+
     }
 
     @Test
