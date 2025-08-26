@@ -1,8 +1,9 @@
 package com.back.global.initData;
 
-import com.back.domain.post.entity.Post;
-import com.back.domain.post.repository.PostRepository;
-import com.back.domain.post.service.PostService;
+import com.back.domain.member.service.MemberService;
+import com.back.domain.post.post.entity.Post;
+import com.back.domain.post.post.repository.PostRepository;
+import com.back.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -24,19 +25,13 @@ public class BaseInitData {
     @Lazy
     private BaseInitData self;
     private final PostService postService;
+    private final MemberService memberService;
 
     @Bean
     ApplicationRunner initDataRunner(){
         return args -> {
 
             self.work1();
-            self.work2();
-
-//            new Thread(() -> {
-//                self.work3();
-//            }).start();
-
-            self.work4();
 
         };
     }
@@ -44,14 +39,16 @@ public class BaseInitData {
     //생성
     @Transactional
     void work1() {
-
-        if(postService.getTotalCount() > 0) {
-            return;
-        }
+        memberService.join("systemUser", "시스템");
+        memberService.join("adminUser", "관리자");
+        memberService.join("user1", "유저1");
+        memberService.join("user2", "유저2");
+        memberService.join("user3", "유저3");
 
         // 서비스를 도입해서 비즈니스 로직을 재사용
         postService.write("제목1", "내용1");
         postService.write("제목2", "내용2");
+
     }
 
     //조회

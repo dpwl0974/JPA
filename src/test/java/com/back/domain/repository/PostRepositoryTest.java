@@ -1,6 +1,7 @@
-package com.back.domain.post.repository;
+package com.back.domain.repository;
 
-import com.back.domain.post.entity.Post;
+import com.back.domain.post.post.entity.Post;
+import com.back.domain.post.post.repository.PostRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
