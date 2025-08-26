@@ -13,8 +13,8 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public void write(String title, String content) {
-        Post post = new Post(title, content);
+    public void write(long authorId, String title, String content) {
+        Post post = new Post(title, content, authorId);
         postRepository.save(post);
     }
 

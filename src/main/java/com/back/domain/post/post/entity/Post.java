@@ -18,10 +18,12 @@ public class Post extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String content;
+    private Long authorId;
 
     // 매개변수 ❌-> 기본 생성자
-    public Post(String title, String content) {
+    public Post(String title, String content, Long authorId) {
         this.title = title;
         this.content = content;
+        this.authorId = authorId;
     }
 }
