@@ -1,8 +1,11 @@
 package com.back.domain.post.post.entity;
 
+import com.back.domain.member.entity.Member;
 import com.back.global.jpa.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,12 +21,14 @@ public class Post extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String content;
-    private Long authorId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member author; //외래키
 
     // 매개변수 ❌-> 기본 생성자
-    public Post(String title, String content, Long authorId) {
+    public Post(String title, String content, Member author) {
         this.title = title;
         this.content = content;
-        this.authorId = authorId;
+        this.author = author;
     }
 }
