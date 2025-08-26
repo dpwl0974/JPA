@@ -41,6 +41,7 @@ public class BaseInitData {
         };
     }
 
+    //생성
     @Transactional
     void work1() {
 
@@ -53,6 +54,7 @@ public class BaseInitData {
         postService.write("제목2", "내용2");
     }
 
+    //조회
     @Transactional
     void work2() {
         Optional<Post> opPost = postService.getPost(1);
@@ -74,7 +76,7 @@ public class BaseInitData {
     @Transactional
     void work4() {
         Post post1 = postService.getPost(1).get();
-        postService.modify(post1, "제목1-수정", "내용1-수정");
+        postService.modify(post1, "제목1-수정2", "내용1-수정2");
     }
 
 }
