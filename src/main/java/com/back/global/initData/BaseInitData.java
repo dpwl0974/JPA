@@ -32,9 +32,11 @@ public class BaseInitData {
             self.work1();
             self.work2();
 
-            new Thread(() -> {
-                self.work3();
-            }).start();
+//            new Thread(() -> {
+//                self.work3();
+//            }).start();
+
+            self.work4();
 
         };
     }
@@ -67,4 +69,11 @@ public class BaseInitData {
 
         postService.delete(post2); // 트랜잭션
     }
+
+    //수정
+    void work4() {
+        Post post1 = postService.getPost(1).get();
+        postService.modify(post1, "제목1-수정", "내용1-수정");
+    }
+
 }
