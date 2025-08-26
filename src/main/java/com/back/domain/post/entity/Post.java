@@ -3,19 +3,16 @@ package com.back.domain.post.entity;
 import com.back.global.jpa.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @Setter
 @Entity
 @ToString
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class Post extends BaseEntity {
     private String title; // final -> 변수의 상수화 -> 명시적으로 값 넣어야 ⭕️
 
