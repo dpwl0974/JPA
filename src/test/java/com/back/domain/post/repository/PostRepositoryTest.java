@@ -6,13 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-@Rollback //작업 끝나면 원복
+@Rollback // 작업 끝나면 원복
+@ActiveProfiles("test") // 데이터 베이스 따로 쓰기 - 해당 부분만 오버라이드
 public class PostRepositoryTest {
 
     @Autowired
@@ -47,7 +49,6 @@ public class PostRepositoryTest {
     @Test
     @DisplayName("글 개수 조회")
     void t3() {
-
         long count = postRepository.count();
         assertThat(count).isEqualTo(2L);
     }
