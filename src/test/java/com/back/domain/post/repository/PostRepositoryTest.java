@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @Transactional
 @Rollback // 작업 끝나면 원복
-@ActiveProfiles("test") // 데이터 베이스 따로 쓰기 - 해당 부분만 오버라이드
+@ActiveProfiles("test") // 데이터베이스 분리 - 해당 부분만 오버라이드
 public class PostRepositoryTest {
 
     @Autowired
